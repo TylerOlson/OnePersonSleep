@@ -9,6 +9,12 @@ public class OnePersonSleep extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
+
+        this.getConfig().addDefault("enable", true);
+        this.getConfig().addDefault("debug", false);
+        this.getConfig().options().copyDefaults(true);
+        saveConfig();
+
         getServer().getPluginManager().registerEvents(new SleepListener(), this);
     }
 }
