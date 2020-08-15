@@ -1,0 +1,5 @@
+name: OnePersonSleep
+version: 1.0
+author: Glarity
+main: dev.tylerolson.onepersonsleep.OnePersonSleep
+api-version: 1.16
