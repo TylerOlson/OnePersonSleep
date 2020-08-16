@@ -16,5 +16,7 @@ public class OnePersonSleep extends JavaPlugin {
         saveConfig();
 
         getServer().getPluginManager().registerEvents(new SleepListener(), this);
+
+        Metrics metrics = new Metrics(this, 8552);
     }
 }
