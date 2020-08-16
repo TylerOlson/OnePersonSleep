@@ -15,11 +15,13 @@ public class SleepListener implements Listener {
 
         long time = event.getPlayer().getWorld().getTime();
 
-        if (time > 12541 && time < 23458) {
+        if ((time > 12541 && time < 23458) || event.getPlayer().getWorld().isThundering()) {
             Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(OnePersonSleep.instance, new Runnable(){
                 public void run() {
                     if(event.getPlayer().isSleeping()) {
                         event.getPlayer().getWorld().setTime(0);
+                        event.getPlayer().getWorld().setThundering(false);
+                        event.getPlayer().getWorld().setStorm(false);
                         event.getPlayer().setStatistic(Statistic.TIME_SINCE_REST, 0);
                         if (OnePersonSleep.instance.getConfig().getBoolean("debug")) {
                             event.getPlayer().sendMessage("Still sleeping");
@@ -30,7 +32,7 @@ public class SleepListener implements Listener {
                         event.getPlayer().sendMessage("delay" + time);
                     }
                 }
-            }, 5*20);
+            }, 101); //101 game ticks = 5.05 seconds
         }
 
         if (OnePersonSleep.instance.getConfig().getBoolean("debug")) {
